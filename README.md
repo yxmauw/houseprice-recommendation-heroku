@@ -12,3 +12,4 @@ Enjoy!
 ### My references:
 1. [Initiation](https://www.analyticsvidhya.com/blog/2021/06/deploy-your-ml-dl-streamlit-application-on-heroku/)
 1. [Integration](https://towardsdatascience.com/a-quick-tutorial-on-how-to-deploy-your-streamlit-app-to-heroku-874e1250dadd)
+1. [Local repo connection heroku](https://devcenter.heroku.com/articles/git)
