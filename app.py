@@ -32,7 +32,7 @@ model_methods = st.container()
 
 with ML_model:
     def ml_model():
-        url = 'https://raw.githubusercontent.com/yxmauw/General_Assembly_Pub/main/project_2/cloud_app/streamlit_data.csv'
+        url = 'https://github.com/yxmauw/houseprice-recommendation-heroku/blob/main/streamlit_data.csv'
         df = pd.read_csv(url, header=0) # load data
         X = df.drop('SalePrice', axis=1)
         y = df['SalePrice']
