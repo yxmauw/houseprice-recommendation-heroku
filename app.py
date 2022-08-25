@@ -1,7 +1,16 @@
 # https://www.analyticsvidhya.com/blog/2021/07/streamlit-quickly-turn-your-ml-models-into-web-apps/
-import streamlit as st
-import pandas as pd
 import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split, GridSearchCV 
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+from sklearn.linear_model import ElasticNet
+from sklearn.metrics import mean_absolute_error
+from sklearn.impute import KNNImputer
+import pickle
+
+import streamlit as st
+
 from model_methods import predict
 
 # configuration of the page
