@@ -1,4 +1,4 @@
-# https://www.analyticsvidhya.com/blog/2021/07/streamlit-quickly-turn-your-ml-models-into-web-apps/
+# https://www.analyticsvidhya.com/blog/2021/06/deploy-your-ml-dl-streamlit-application-on-heroku/
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split, GridSearchCV 
