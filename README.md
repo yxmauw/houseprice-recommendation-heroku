@@ -1,11 +1,9 @@
-# Web Application hosted on [Streamlit Cloud](https://streamlit.io/)
+# Web Application hosted on [Heroku](https://www.heroku.com)
 
-This folder contains the code and associated files used to deploy the machine learning model on the cloud-hosted web application. 
+This folder contains the code and associated files used to deploy the machine learning model on [Heroku](https://www.heroku.com). 
 
-![Heroku](https://pyheroku-badge.herokuapp.com/?app=ames-houseprice-app&style=flat)
-
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://yxmauw-general-assembly-pub-project-2cloud-appapp-rr21s2.streamlitapp.com) to view
+[![Heroku](https://pyheroku-badge.herokuapp.com/?app=ames-houseprice-app&style=flat)](https://ames-houseprice-app.herokuapp.com/) to view
 
 Enjoy!
 
-[My Reference](https://www.analyticsvidhya.com/blog/2021/07/streamlit-quickly-turn-your-ml-models-into-web-apps/)
+[My Reference](https://www.analyticsvidhya.com/blog/2021/06/deploy-your-ml-dl-streamlit-application-on-heroku/)
