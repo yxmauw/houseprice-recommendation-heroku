@@ -1,15 +1,8 @@
 # https://www.analyticsvidhya.com/blog/2021/07/streamlit-quickly-turn-your-ml-models-into-web-apps/
-import numpy as np
-import pandas as pd
-from sklearn.model_selection import train_test_split, GridSearchCV 
-from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import Pipeline
-from sklearn.linear_model import ElasticNet
-from sklearn.metrics import mean_absolute_error
-from sklearn.impute import KNNImputer
-import pickle
-
 import streamlit as st
+import pandas as pd
+import numpy as np
+from model_methods import predict
 
 # configuration of the page
 st.set_page_config(
@@ -25,60 +18,6 @@ The algorithm driving this app is built on
 historical housing sale price data to generate
 recommended Sale Price!
 ''')
-
-########################################################## 
-ML_model = st.container()
-model_methods = st.container()
-
-with ML_model:
-    def ml_model():
-        url = 'https://github.com/yxmauw/houseprice-recommendation-heroku/blob/main/streamlit_data.csv'
-        df = pd.read_csv(url, header=0) # load data
-        X = df.drop('SalePrice', axis=1)
-        y = df['SalePrice']
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-
-        enet_ratio = [.5,.8,.9,.95]
-        alpha_l = [1.,10.,100.,500.,1000.] 
-
-        pipe_enet = Pipeline([
-                    ('ss', StandardScaler()),
-                    ('enet', ElasticNet())
-                    ])
-
-        pipe_enet_params = {'enet__alpha': alpha_l,
-                        'enet__l1_ratio': enet_ratio
-                        }
-        cv_ct = 5
-        score = 'neg_mean_absolute_error'
-
-        pipe_enet_gs = GridSearchCV(pipe_enet,
-                                    pipe_enet_params,
-                                    cv=cv_ct,
-                                    scoring=score,
-                                    verbose=1
-                                    )
-
-        pipe_enet_gs.fit(X_train,y_train)
-
-        pickle.dump(pipe_enet_gs, open('final_model.sav','wb'))
-
-
-with model_methods:
-    def predict(new_data):
-        # impute missing `Overall Qual` values
-        url = 'https://github.com/yxmauw/houseprice-recommendation-heroku/blob/main/streamlit_imp_data.csv'
-        imp_data = pd.read_csv(url, header=0)
-        imp = KNNImputer()
-        imp.fit(imp_data)
-        shaped_data = np.reshape(new_data, (1, -1))
-        input_data = imp.transform(shaped_data)
-        # load model
-        with open('final_model.sav','rb') as f:
-            model = pickle.load(f)
-        pred = model.predict([input_data][0])
-        return pred 
-    
 ###########################################################
 def predict_price():
     data = list(map(float, [gr_liv_area,
