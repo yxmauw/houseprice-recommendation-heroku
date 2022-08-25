@@ -5,6 +5,10 @@ This folder contains the code and associated files used to deploy the machine le
 <!--https://pyheroku-badge.herokuapp.com/ -->
 [![Heroku](https://pyheroku-badge.herokuapp.com/?app=ames-houseprice-app&style=flat)](https://ames-houseprice-app.herokuapp.com/) to view
 
+If status shows **timeout**, it just means app is in dormant state. It is still functioning, please click through
+
+#### Caution: Prediction takes a few minutes to process due to large NLTK corpora and training data
+
 Enjoy!
 
 ### My references:
