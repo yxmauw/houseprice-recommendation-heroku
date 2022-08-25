@@ -37,20 +37,30 @@ def main():
     mas_vnr_area = st.text_input('Enter house masonry veneer area in square feet', '')
 
     if st.button('Recommend Saleprice'):
-        with st.sidebar:
-            try: 
-                predict_price()
-            except:
-                st.warning('''Oops, looks like you missed a spot. 
-                Please complete all fields to get a quote estimate 
-                for property Sale Price 🙏. 
-                \n\n Thank you. 🙂''')
+        if gr_liv_area and overall_qual and total_bsmt_sf and garage_area and year_built and mas_vnr_area:
+            with st.sidebar:
+                try: 
+                    data = list(map(float, [gr_liv_area,
+                                    (float(gr_liv_area))**2,
+                                    (float(gr_liv_area))**3,
+                                    overall_qual, 
+                                    total_bsmt_sf,
+                                    garage_area,
+                                    year_built,
+                                    mas_vnr_area]))
+                    result = np.format_float_positional((predict(data)[0]), unique=False, precision=0)
+                    st.info(f'# Our SalePrice suggestion is ${result}')
+                    st.write('with an estimated uncertainty of ± \$11K')
+                except:
+                    st.warning('''Oops, looks like you missed a spot. 
+                    Please complete all fields to get a quote estimate 
+                    for property Sale Price 🙏. 
+                    \n\n Thank you. 🙂''')
 ########################################################## 
 
 @st.cache
 def ml_model():
-    url = 'https://github.com/yxmauw/houseprice-recommendation-heroku/blob/main/streamlit_data.csv'
-    df = pd.read_csv(url, header=0) # load data
+    df = pd.read_csv('streamlit_data.csv') # load data
     X = df.drop('SalePrice', axis=1)
     y = df['SalePrice']
     # train test split
@@ -76,29 +86,16 @@ def ml_model():
                                 verbose=1
                                 )
     # fit model
-    pipe_enet_gs.fit(X_train,y_train)
-    return pipe_enet_gs
+    model = pipe_enet_gs.fit(X_train,y_train)
+    return model
 def predict(new_data):
     # impute missing `Overall Qual` values
-    url = 'https://github.com/yxmauw/houseprice-recommendation-heroku/blob/main/streamlit_imp_data.csv'
-    imp_data = pd.read_csv(url, header=0)
+    imp_data = pd.read_csv('streamlit_imp_data.csv')
     imp = KNNImputer()
     imp.fit(imp_data)
     shaped_data = np.reshape(new_data, (1, -1))
     input_data = imp.transform(shaped_data)
     pred = ml_model().predict([input_data][0])
     return pred 
-def predict_price():
-    data = list(map(float, [gr_liv_area,
-                            (float(gr_liv_area))**2,
-                            (float(gr_liv_area))**3,
-                            overall_qual, 
-                            total_bsmt_sf,
-                            garage_area,
-                            year_built,
-                            mas_vnr_area]))
-    result = np.format_float_positional((predict(data)[0]), unique=False, precision=0)
-    st.info(f'# Our SalePrice suggestion is ${result}')
-    st.write('with an estimated uncertainty of ± \$11K')
 if __name__=='__main__':
     main()
