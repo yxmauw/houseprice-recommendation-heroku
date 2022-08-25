@@ -28,25 +28,25 @@ def main():
     ''')
     st.info('Only Enter Numeric Values in the Following Fields')
     
-    gr_liv_area = st.number_input('Enter house ground living area in square feet. Accept values 334 to 3395 inclusive', min_value=334.0, max_value=3395.0, value=0.0)
+    gr_liv_area = st.text_input('Enter house ground living area in square feet. Accept values 334 to 3395 inclusive', '')
     overall_qual = np.nan
-    total_bsmt_sf = st.number_input('Enter house total basement area in square feet. Accept values 0 to 3206 inclusive', min_value=0.0, max_value=3206.0, value=0.0)
-    garage_area = st.number_input('Enter house garage area in square feet. Accept values 0 to 1356 inclusive', min_value=0.0, max_value=1356.0, value=0.0)
-    year_built = st.number_input('Enter the year your house was built. Accept values 1872 to 2010 inclusive', min_value=0.0, max_value=2010.0, value=0.0)
-    mas_vnr_area = st.number_input('Enter house masonry veneer area in square feet. Accept values 0 to 1129 inclusive', min_value=0.0, max_value=1129.0, value=0.0)
+    total_bsmt_sf = st.text_input('Enter house total basement area in square feet. Accept values 0 to 3206 inclusive', '')
+    garage_area = st.text_input('Enter house garage area in square feet. Accept values 0 to 1356 inclusive', '')
+    year_built = st.text_input('Enter the year your house was built. Accept values 1872 to 2010 inclusive', '')
+    mas_vnr_area = st.text_input('Enter house masonry veneer area in square feet. Accept values 0 to 1129 inclusive', '')
 
     if st.button('Recommend Saleprice'):
         if gr_liv_area and overall_qual and total_bsmt_sf and garage_area and year_built and mas_vnr_area:
             with st.sidebar:
                 try: 
-                    data = list(gr_liv_area,
-                                gr_liv_area**2,
-                                gr_liv_area**3,
-                                overall_qual, 
-                                total_bsmt_sf,
-                                garage_area,
-                                year_built,
-                                mas_vnr_area)
+                    data = list(map(float, [gr_liv_area,
+                                    (float(gr_liv_area))**2,
+                                    (float(gr_liv_area))**3,
+                                            overall_qual, 
+                                            total_bsmt_sf,
+                                            garage_area,
+                                            year_built,
+                                            mas_vnr_area]))
                     result = np.format_float_positional((predict(data)[0]), unique=False, precision=0)
                     st.info(f'# Our SalePrice suggestion is ${result}')
                     st.write('with an estimated uncertainty of ± \$11K')
