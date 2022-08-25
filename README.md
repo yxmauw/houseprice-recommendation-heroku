@@ -7,8 +7,6 @@ This folder contains the code and associated files used to deploy the machine le
 
 If status shows **timeout**, it just means app is in dormant state. It is still functioning, please click through
 
-#### Caution: Prediction takes a few minutes to process due to large NLTK corpora and training data
-
 Enjoy!
 
 ### My references:
