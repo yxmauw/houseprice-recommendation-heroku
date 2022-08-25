@@ -27,8 +27,8 @@ recommended Sale Price!
 ''')
 
 ########################################################## 
-ML_model = st.beta_container()
-model_methods = st.beta_container()
+ML_model = st.container()
+model_methods = st.container()
 
 with ML_model:
     def ml_model():
