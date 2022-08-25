@@ -28,12 +28,12 @@ def main():
     ''')
     st.info('Only Enter Numeric Values in the Following Fields')
     
-    gr_liv_area = st.number_input('Enter house ground living area in square feet. Accept values 334 to 3395 inclusive', min_value=334.0, max_value=3395.0, value=None)
+    gr_liv_area = st.number_input('Enter house ground living area in square feet. Accept values 334 to 3395 inclusive', min_value=334.0, max_value=3395.0, value=0.0)
     overall_qual = np.nan
-    total_bsmt_sf = st.number_input('Enter house total basement area in square feet. Accept values 0 to 3206 inclusive', min_value=0.0, max_value=3206.0, value=None)
-    garage_area = st.number_input('Enter house garage area in square feet. Accept values 0 to 1356 inclusive', min_value=0.0, max_value=1356.0, value=None)
-    year_built = st.number_input('Enter the year your house was built. Accept values 1872 to 2010 inclusive', min_value=0.0, max_value=2010.0, value=None)
-    mas_vnr_area = st.number_input('Enter house masonry veneer area in square feet. Accept values 0 to 1129 inclusive', min_value=0.0, max_value=1129.0, value=None)
+    total_bsmt_sf = st.number_input('Enter house total basement area in square feet. Accept values 0 to 3206 inclusive', min_value=0.0, max_value=3206.0, value=0.0)
+    garage_area = st.number_input('Enter house garage area in square feet. Accept values 0 to 1356 inclusive', min_value=0.0, max_value=1356.0, value=0.0)
+    year_built = st.number_input('Enter the year your house was built. Accept values 1872 to 2010 inclusive', min_value=0.0, max_value=2010.0, value=0.0)
+    mas_vnr_area = st.number_input('Enter house masonry veneer area in square feet. Accept values 0 to 1129 inclusive', min_value=0.0, max_value=1129.0, value=0.0)
 
     if st.button('Recommend Saleprice'):
         if gr_liv_area and overall_qual and total_bsmt_sf and garage_area and year_built and mas_vnr_area:
