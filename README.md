@@ -1,6 +1,6 @@
 # Web Application hosted on [Heroku](https://www.heroku.com)
 
-_App is migrated to:_[![Generic badge](https://img.shields.io/badge/🤗-Open%20In%20Spaces-blue.svg)](https://huggingface.co/spaces/yxmauw/ames-houseprice-recommender)
+_App is migrated to:_ [![Generic badge](https://img.shields.io/badge/🤗-Open%20In%20Spaces-blue.svg)](https://huggingface.co/spaces/yxmauw/ames-houseprice-recommender)
 
 This folder contains the code and associated files used to deploy the machine learning model using [Streamlit](https://streamlit.io/) on [Heroku](https://www.heroku.com). 
 
